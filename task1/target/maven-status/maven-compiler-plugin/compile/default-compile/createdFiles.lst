@@ -1,8 +1,0 @@
-model\ElectricCar.class
-manager\ITaxiPark.class
-model\GasolineCar.class
-manager\TaxiPark.class
-helper\TaxiParkListHelper.class
-model\Car.class
-helper\TaxiParkListHelper$1.class
-model\CarType.class

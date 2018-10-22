@@ -33,13 +33,25 @@ public class TaxiParkListHelper {
 
     public static List<Car> sortCarByConsumption(List<Car> carList) {
         List<Car> sortedList = new ArrayList<Car>(carList);
+
         sortedList.sort(new Comparator<Car>() {
             public int compare(Car o1, Car o2) {
                 return Integer.compare(o1.getConsumption(), o2.getConsumption());
             }
         });
-        logger.debug("sort result="+ sortedList.toString());
+
+        logger.debug("sort result=" + sortedList.toString());
         return sortedList;
+    }
+
+    public static List<Car> sortReverseCarByConsumption(List<Car> carList){
+        List<Car> reverseList = sortCarByConsumption(carList);
+
+        Collections.reverse(reverseList);
+
+        logger.debug("reverse sort result="+reverseList.toString());
+        return reverseList;
+
     }
 
 }

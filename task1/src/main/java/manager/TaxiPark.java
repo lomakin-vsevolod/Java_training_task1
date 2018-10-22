@@ -1,5 +1,6 @@
 package manager;
 
+import manager.interfaces.ITaxiPark;
 import model.Car;
 import org.apache.log4j.Logger;
 

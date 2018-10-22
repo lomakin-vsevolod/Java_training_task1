@@ -1,5 +1,6 @@
 package helper;
 
+import comparator.CarConsumptionComparator;
 import model.Car;
 import model.ElectricCar;
 import org.apache.log4j.Logger;
@@ -34,11 +35,7 @@ public class TaxiParkListHelper {
     public static List<Car> sortCarByConsumption(List<Car> carList) {
         List<Car> sortedList = new ArrayList<Car>(carList);
 
-        sortedList.sort(new Comparator<Car>() {
-            public int compare(Car o1, Car o2) {
-                return Integer.compare(o1.getConsumption(), o2.getConsumption());
-            }
-        });
+        sortedList.sort(new CarConsumptionComparator());
 
         logger.debug("sort result=" + sortedList.toString());
         return sortedList;

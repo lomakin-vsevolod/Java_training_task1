@@ -54,7 +54,7 @@ public class TaxiParkTest extends BasicTest {
         TaxiPark taxiPark = new TaxiPark(carList);
         TaxiParkCase taxiParkCase = new TaxiParkCase();
 
-        taxiParkCase.deleteCar(taxiPark,indexList);
+        taxiParkCase.deleteCar(taxiPark, indexList);
 
         Assert.assertEquals(expectedResult, taxiPark.getSummaryCost());
     }

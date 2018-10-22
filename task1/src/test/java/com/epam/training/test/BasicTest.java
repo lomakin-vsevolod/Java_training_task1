@@ -2,10 +2,8 @@ package com.epam.training.test;
 
 import com.epam.training.converter.FromDTOConverter;
 import com.epam.training.dto.CarDTO;
-import com.epam.training.util.JsonFileConstants;
 import com.epam.training.util.JsonFileHandler;
 import model.Car;
-import model.ElectricCar;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.ArrayList;

@@ -1,56 +1,54 @@
 package com.epam.training.test;
 
+import com.epam.training.cases.FromDTOConverterCase;
 import com.epam.training.converter.FromDTOConverter;
 import com.epam.training.dto.CarDTO;
 import com.epam.training.util.JsonFileConstants;
 import model.Car;
 import model.ElectricCar;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class FromDTOConverterTest extends BasicTest {
 
-    @Test
-    public void testConvertToCar() {
+    @DataProvider
+    public Object[][] dataConvertToCar() {
+        return new Object[][]{{JsonFileConstants.CONVERT_TO_DTO, FromDTOConverterCase.getDataConvertToCar()}};
+    }
+
+    @Test(dataProvider = "dataConvertToCar")
+    public void testConvertToCar(String file, ElectricCar expectedResult) {
         List<CarDTO> carDTOList;
         FromDTOConverter fromDTOConverter = new FromDTOConverter();
         Car car;
-        ElectricCar electricCar = new ElectricCar();
-        electricCar.setBrand("Skoda");
-        electricCar.setModel("Octavia");
-        electricCar.setCost(9332);
-        electricCar.setConsumption(10);
-        electricCar.setMaxSpeed(190);
-        electricCar.setBatteryType("lion");
-        electricCar.setPowerConsumption(34);
-        carDTOList = jsonFileHandler.convertJsonObject(jsonFileHandler.readJsonFile(JsonFileConstants.CONVERT_TO_DTO));
+
+        carDTOList = jsonFileHandler.convertJsonObject(jsonFileHandler.readJsonFile(file));
 
         car = fromDTOConverter.convertToCarFromDTO(carDTOList.get(0));
 
-        Assert.assertEquals(car, electricCar);
+        Assert.assertEquals(car, expectedResult);
     }
 
-    @Test
-    public void testNullConvertToCar() {
+    @DataProvider
+    public Object[][] dataNullConvertToCar() {
+        return new Object[][]{{JsonFileConstants.DTO_CONVERTER_NULL, FromDTOConverterCase.getDataNullConvertToCar()}};
+    }
+
+    @Test(dataProvider = "dataNullConvertToCar")
+    public void testNullConvertToCar(String file, ElectricCar expectedResult) {
         List<CarDTO> carDTOList;
         FromDTOConverter fromDTOConverter = new FromDTOConverter();
         Car car;
-        ElectricCar electricCar = new ElectricCar();
-        electricCar.setBrand("Skoda");
-        electricCar.setModel(null);
-        electricCar.setCost(9332);
-        electricCar.setConsumption(10);
-        electricCar.setMaxSpeed(190);
-        electricCar.setBatteryType("lion");
-        electricCar.setPowerConsumption(34);
-        carDTOList = jsonFileHandler.convertJsonObject(jsonFileHandler.readJsonFile(JsonFileConstants.DTO_CONVERTER_NULL));
+        carDTOList = jsonFileHandler.convertJsonObject(jsonFileHandler.readJsonFile(file));
 
         car = fromDTOConverter.convertToCarFromDTO(carDTOList.get(0));
 
-        Assert.assertEquals(car, electricCar);
+        Assert.assertEquals(car, expectedResult);
     }
+
 
     @Test
     public void testReturnNullConvertToCar() {
